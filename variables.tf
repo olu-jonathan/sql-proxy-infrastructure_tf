@@ -43,14 +43,14 @@ variable "private_link_service_name" {
 variable "vm_admin_username" {
   description = "Admin username for the proxy VM"
   type        = string
-  default     = "seunjonathan"
+  default     = "<adminname>"
 }
 
 variable "vm_admin_password" {
   description = "Admin password for the proxy VM"
   type        = string
   sensitive   = true
-  default     = "Gre@tness123"
+  default     = "<YOURPASWORDHERE>"
 }
 
 variable "vpn_root_certificate_data" {
