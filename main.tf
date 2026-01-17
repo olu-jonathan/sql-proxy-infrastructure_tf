@@ -205,7 +205,6 @@ resource "azurerm_windows_virtual_machine" "proxy_vm" {
 
 
 
-# VM Extension to configure port forwarding
 # Enable IP forwarding
 #    Set-NetIPInterface -InterfaceAlias "Ethernet" -Forwarding Enabled
 
