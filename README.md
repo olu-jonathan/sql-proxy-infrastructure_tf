@@ -1,6 +1,8 @@
 # SQL Server Private Link Infrastructure
 
 This Terraform configuration creates the complete Azure infrastructure for exposing on-premises SQL Server via Azure Private Link.
+
+## Architecture
 ![spcs azure](https://github.com/user-attachments/assets/2e8a00b8-fa45-458e-b352-3f366996d241)
 
 
@@ -46,7 +48,19 @@ After Terraform completes, you need to:
 
 RDP to the proxy VM and run the command shown in the `port_forwarding_command` output:
 ```powershell
-netsh interface portproxy add v4tov4 listenport=1433 listenaddress=<VM_PRIVATE_IP> connectport=1433 connectaddress=172.16.201.2
+
+# Enable IP forwarding
+    Set-NetIPInterface -InterfaceAlias "Ethernet" -Forwarding Enabled
+
+# Add port forwarding rule
+   netsh interface portproxy add v4tov4 listenport=1433 listenaddress=0.0.0.0 connectport=1433 connectaddress=172.16.201.2
+
+# Verify the rule
+  netsh interface portproxy show all
+
+# Add firewall rules on the VM to allow inbound traffic
+ New-NetFirewallRule -DisplayName 'SQL Proxy Inbound' -Direction Inbound -LocalPort 1433 -Protocol TCP -Action Allow
+
 ```
 
 ### 2. Download and Install VPN Client
@@ -67,22 +81,6 @@ After Snowflake provisions the endpoint:
 1. Go to Private Link Service in Azure Portal
 2. Approve the pending connection
 
-## Architecture
-```
-Snowflake
-  ↓ (Private Endpoint)
-Private Link Service
-  ↓
-Internal Load Balancer (10.0.2.100)
-  ↓
-Proxy VM (10.0.2.x)
-  ↓ (Port Forwarding)
-VPN Gateway
-  ↓
-Your Laptop (172.16.201.2)
-  ↓
-SQL Server
-```
 
 ## Important Notes
 
