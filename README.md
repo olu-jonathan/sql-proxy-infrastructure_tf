@@ -1,9 +1,11 @@
 # SQL Server Private Link Infrastructure
 
 This Terraform configuration creates the complete Azure infrastructure for exposing on-premises SQL Server via Azure Private Link.
+To use 2 cheaper linux vm as proxies, follow the linux_vm_alternative folder.
 
 ## Architecture
-![spcs azure](https://github.com/user-attachments/assets/2e8a00b8-fa45-458e-b352-3f366996d241)
+![spcs azure new](https://github.com/user-attachments/assets/24de83b5-0641-4f06-acf6-46e6519a3bac)
+
 
 
 ## Prerequisites
