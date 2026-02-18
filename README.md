@@ -1,10 +1,12 @@
-# SQL Server Private Link Infrastructure
+# OPENFLOW to SQL Server Private Link Setup
 
 This Terraform configuration creates the complete Azure infrastructure for exposing on-premises SQL Server via Azure Private Link.
-To use 2 cheaper linux vm as proxies, follow the linux_vm_alternative folder.
+To alternatively use two cheaper linux vm as proxies, follow the ![linux_vm_alternative folder](https://github.com/olu-jonathan/sql-proxy-infrastructure_tf/tree/main/linux_vm_alternative).
 
 ## Architecture
 ![spcs azure new](https://github.com/user-attachments/assets/24de83b5-0641-4f06-acf6-46e6519a3bac)
+
+Medium article - ![Access On-Prem SQL Server through Azure Privatelink and Snowflake Openflow SPCS](https://olujonathan.medium.com/access-on-prem-ms-sql-server-through-azure-privatelink-and-snowflake-openflow-spcs-b8f2cd68d9a2).
 
 
 
